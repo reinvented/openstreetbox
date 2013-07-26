@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title>Map of Charlottetown, Prince Edward Island, Canada</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="leaflet/leaflet.css" />
+	<link rel="stylesheet" href="style/openstreetbox.css" />
+	<script type="text/javascript" src="leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map"></div>
+	<script>
+		var map = L.map('map').setView([46.23527, -63.12958], 15);
+		var marker;
+		L.tileLayer('tiles/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			minZoom: 13,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map);
+		
+		map.locate({setView: true, maxZoom: 16, boolean: true});
+		
+		function onLocationFound(e) {
+      if (!marker) {
+        marker = L.marker(e.latlng).addTo(map);
+      }
+      else {
+        marker.setLatLng(e.latlng);
+      }
+    }
+
+    map.on('locationfound', onLocationFound);
+		
+	</script>
+</body>
+</html>
+

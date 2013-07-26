@@ -8,7 +8,9 @@ I build upon this [PirateBox forum thread](http://forum.daviddarts.com/read.php?
 Generating Tiles
 ----------------
 
-I used [TileMill](http://www.mapbox.com/tilemill/) to generate the map tiles I wanted to serve in the MBTiles format.  To do this I created and style the kind of map I wanted in TileMill, and then selected **Export | MBTiles**:
+I used [TileMill](http://www.mapbox.com/tilemill/) to generate the map tiles I wanted to serve in the MBTiles format.
+
+I found [this tutorial for using OpenStreetMap data with TileMill](http://www.mapbox.com/tilemill/docs/guides/osm-bright-mac-quickstart/) to be particularly useful for creating custom tiles, but to start I just used data already in TileMill: I created and style the kind of map I wanted in TileMill, and then selected **Export | MBTiles**:
 
 ![image](screenshots/tilemill-export.png)
 
@@ -40,15 +42,14 @@ The result will be a directory called ``tiles`` with subdirectories for each zoo
 Readying the Code
 -----------------
 
-From GitHub grab [link](http://ratzillas.com/osm/osm_onboard.zip):
+From GitHub grab the basic template in the **www** directory of this repository:
 
-	wget http://ratzillas.com/osm/osm_onboard.zip
-	unzip osm_onboard.zip
-	cd osm_onboard
+	git clone https://github.com/reinvented/openstreetbox.git
+	cd openstreetbox/www
 	
-Copy the ``leaflet.css`` and ``leaflet.js`` files out of the ``tiles`` directory temporarily, then copy the ``tiles`` directory that TileMill created into this directory ()replacing the ``tiles`` directory that was already there) and copy the Leaflet the ``leaflet.css`` and ``leaflet.js`` back into the ``tiles`` directory.
+Replace the ``tiles`` directory under ``openstreetbox/www`` with the ``tiles`` directory you created in TileMill.
 
-Next, edit the ``OSM_In_A_Box_beta.html`` file, and change the centre of the map to match the centre you set in TileMill, reversing the latitude and longitude and setting the zoomlevel (11 in the example below) to the maximum zoomlevel you set in TileMill:
+Next, edit the ``index.html`` file, and change the centre of the map to match the centre you set in TileMill, reversing the latitude and longitude and setting the zoomlevel (11 in the example below) to the maximum zoomlevel you set in TileMill:
 
 ![image](screenshots/tilemill-mapcentre.png)
 
@@ -58,23 +59,13 @@ into:
 	
 Finally, set the maxZoom and minZoom to the maximum and minimum zoom levels to match TileMill:
 	
-	//MaxZoom
 			maxZoom: 12,
-	//MinZoom
 			minZoom: 4,
-
-Finally (optionally) you can make the map fill the browser, changing:
-
-	<div id="map" style="width: 600px; height: 600px"></div>
-
-to:
-
-	<div id="map" style="width: 100%; height: 100%"></div>
 	
 Taking a Look
 -------------
 
-Finally, load the ``OSM_In_A_Box_beta.html`` in a browser:
+Finally, load the ``index.html`` in a browser:
 
 ![image](screenshots/osm-working.png)
 

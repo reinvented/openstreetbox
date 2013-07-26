@@ -1,0 +1,1 @@
+Replaced this directory with the ``tiles`` directory you created from the TileMill ``.mbtiles`` file.
